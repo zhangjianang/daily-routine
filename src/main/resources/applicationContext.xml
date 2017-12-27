@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+ http://www.springframework.org/schema/context
+ http://www.springframework.org/schema/context/spring-context-3.0.xsd ">
+
+    <!-- bean annotation driven -->
+    <context:annotation-config />
+    <context:component-scan base-package="beans" >
+    </context:component-scan>
+
+    <bean name="urseRmiService" class="com.lm.core.service.impl.UserRmiServiceImpl"/>
+    <!--<bean name="rmiTest" class="org.springframework.remoting.rmi.RmiServiceExporter">-->
+        <!--<property name="service" ref="urseRmiService" />-->
+        <!--<property name="serviceName" value="urseRmiServiceTest" />-->
+        <!--<property name="serviceInterface" value="com.lm.core.service.UserRmiService"/>-->
+        <!--<property name="registryPort" value="1021" />-->
+    <!--</bean>-->
+</beans>

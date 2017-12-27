@@ -23,9 +23,13 @@ public class ConcSubject implements ISubject{
     }
 
     public static void main(String[] args) {
-        AngUser a =  new AngUser();
+        AngUser a =  new AngUser("ang");
+        AngUser a1 =  new AngUser("cui");
+        AngUser a2 =  new AngUser("yang");
         ConcSubject c = new ConcSubject();
         c.addObj(a);
-        c.mynotify("you change");
+        c.addObj(a1);
+        c.addObj(a2);
+        c.mynotify("all change");
     }
 }
