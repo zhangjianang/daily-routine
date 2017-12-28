@@ -1,27 +1,28 @@
 package multi.basic;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * Created by adimn on 2017/12/28.
  */
 public class MultiAdd implements Callable<Integer> {
-    private  Integer sum = 0;
     private Integer end = 0;
     public MultiAdd(Integer inadd){
         this.end = inadd;
     }
     public Integer call() throws Exception {
-        for(int i = 0; i<end;i++){
+        int sum = 0;
+        for(int i = 1; i<=end;i++){
             sum += i;
         }
         return sum;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService es = Executors.newFixedThreadPool(2);
-//        es.submit(new )
+        Future<Integer> f1 = es.submit(new MultiAdd(100));
+        Future<Integer> f2 = es.submit(new MultiAdd(200));
+        System.out.println(f1.get());
+        System.out.println(f2.get());
     }
 }
