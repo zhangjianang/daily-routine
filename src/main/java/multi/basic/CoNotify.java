@@ -24,7 +24,7 @@ class Creator implements Runnable{
 
     public void run() {
         int i = 0;
-        while(true){
+        while(i<40){
 
             synchronized (p) {
                 if(p.show){
@@ -34,7 +34,7 @@ class Creator implements Runnable{
                         e.printStackTrace();
                     }
                 }
-                p.show = true;
+
                 if (i % 2 == 0) {
                     p.name = "小翠";
                     p.gender = "nv";
@@ -42,6 +42,7 @@ class Creator implements Runnable{
                     p.name = "大强";
                     p.gender = "男";
                 }
+                p.show = true;
                 p.notify();
             }
             i++;
@@ -56,7 +57,9 @@ class Display implements Runnable{
         this.p = p;
     }
     public void run() {
-        while(true){
+
+        int i = 0;
+        while(i<40){
 
             synchronized (p) {
                 if(!p.show){
@@ -70,8 +73,9 @@ class Display implements Runnable{
                 p.show = false;
                 p.notify();
             }
-
+            i++;
         }
+
 
     }
 }
