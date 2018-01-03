@@ -23,6 +23,10 @@ class Creator implements Runnable{
     }
 
     public void run() {
+        create();
+    }
+
+    private void create(){
         int i = 0;
         while(i<40){
 
@@ -57,7 +61,10 @@ class Display implements Runnable{
         this.p = p;
     }
     public void run() {
+        display();
+    }
 
+    private void display(){
         int i = 0;
         while(i<40){
 
@@ -75,8 +82,6 @@ class Display implements Runnable{
             }
             i++;
         }
-
-
     }
 }
 
