@@ -7,6 +7,7 @@ public class ThreadRunnableDiff {
     public static void main(String[] args) {
         MyThread m1 = new MyThread("t1");
         MyThread m2 = new MyThread("t2");
+
         MyThread m3 = new MyThread("t3");
         MyThread m4 = new MyThread("t4");
 //        Thread t1 = new Thread(m1);
@@ -22,11 +23,16 @@ public class ThreadRunnableDiff {
 //        Thread t4 = new Thread(r2);
 //        t3.start();
 //        t4.start();
+
+//        Thread t1 = new Thread(m1);
+//        Thread t2 = new Thread(m1);
+
     }
 }
 
 class MyThread extends  Thread{
     private String name ;
+
     private  static Integer i = 0;
 
     public MyThread(String name){
@@ -34,9 +40,11 @@ class MyThread extends  Thread{
     }
     public void run(){
         Thread.currentThread().setName(name);
+
         synchronized (MyThread.class) {
             while (i++ < 1000) {
                 System.out.println(Thread.currentThread().getName() + " print " + i);
+
 
             }
         }
@@ -52,6 +60,7 @@ class MyRunnable implements Runnable{
     public void run() {
         Thread.currentThread().setName(name);
         synchronized (MyRunnable.class) {
+
             while (i++ < 100) {
                 try {
                     Thread.sleep(1);
