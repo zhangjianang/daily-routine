@@ -9,10 +9,9 @@
 
     <!-- bean annotation driven -->
     <context:annotation-config />
-    <context:component-scan base-package="beans" >
-    </context:component-scan>
+    <context:component-scan base-package="beans" ></context:component-scan>
 
-    <bean name="urseRmiService" class="com.lm.core.service.impl.UserRmiServiceImpl"/>
+    <!--<bean name="urseRmiService" class="com.lm.core.service.impl.UserRmiServiceImpl"/>-->
     <!--<bean name="rmiTest" class="org.springframework.remoting.rmi.RmiServiceExporter">-->
         <!--<property name="service" ref="urseRmiService" />-->
         <!--<property name="serviceName" value="urseRmiServiceTest" />-->
