@@ -38,11 +38,9 @@ public class DeadLock implements Runnable{
 
 
 class ThreadA{
-    private ThreadA(){}
     public static  ThreadA getA = new ThreadA();
 }
 
 class ThreadB{
-    private ThreadB(){}
     public static  ThreadB  getB =new ThreadB();
 }
