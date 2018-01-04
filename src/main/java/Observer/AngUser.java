@@ -8,6 +8,7 @@ public class AngUser implements IObserver {
     public AngUser(String name){
         this.name = name;
     }
+
     public void update(String data) {
         System.out.println(name + " update info is :"+data);
     }

@@ -12,7 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+
 
 /**
  * Created by adimn on 2017/12/27.
@@ -30,7 +30,6 @@ public class ZKTest implements Watcher {
 
         //增加JVM退出时 资源释放##
         Runtime.getRuntime().addShutdownHook(new Thread(){
-
             public void run() {
                 System.out.println("释放资源!");
                 if (zookeeper != null) {
@@ -218,7 +217,6 @@ public class ZKTest implements Watcher {
 
 
     public static void main(String args[]){
-
         getInstance().init();
     }
 
