@@ -18,4 +18,14 @@
         <!--<property name="serviceInterface" value="com.lm.core.service.UserRmiService"/>-->
         <!--<property name="registryPort" value="1021" />-->
     <!--</bean>-->
+
+    <!-- 批量扫描@Component -->
+    <context:component-scan base-package="com.jedis"/>
+    <bean id="ijedis" class="redis.clients.jedis.Jedis">
+        <constructor-arg name="host" value="localhost"/>
+    </bean>
+    <bean id="articlesDAOImpl" class="com.jedis.ArticlesDAOImpl">
+        <property name="myjid" ref="ijedis"/>
+    </bean>
+
 </beans>
