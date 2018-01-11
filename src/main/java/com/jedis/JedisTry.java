@@ -1,8 +1,11 @@
 package com.jedis;
 
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.Pipeline;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -14,7 +17,13 @@ public class JedisTry {
     public void testClient() {
         jedisCli = new Jedis("127.0.0.1", 6379); //新建Jedis对象
         jedisCli.select(2); //切换Redis数据库
-        jedisCli.set("firstJedis", "hello,Jedis"); //与Redis命令行操作基本一致
+
+        Pipeline pl = jedisCli.pipelined();
+        pl.lpush("chamopion","we");
+        pl.lpush("chamopion","are");
+        pl.lpush("chamopion","the");
+        pl.sync();
+        jedisCli.disconnect();
     }
 
     public void testMap() {
@@ -35,6 +44,6 @@ public class JedisTry {
 
     public static void main(String[] args) {
         JedisTry jd = new JedisTry();
-        jd.testMap();
+        jd.testClient();
     }
 }
