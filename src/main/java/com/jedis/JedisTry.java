@@ -13,9 +13,12 @@ import java.util.Map;
  */
 public class JedisTry {
     public Jedis jedisCli;
+    public JedisTry(){
+        jedisCli = new Jedis("127.0.0.1", 6379); //新建Jedis对象
+    }
 
     public void testClient() {
-        jedisCli = new Jedis("127.0.0.1", 6379); //新建Jedis对象
+
         jedisCli.select(2); //切换Redis数据库
 
         Pipeline pl = jedisCli.pipelined();
@@ -27,7 +30,6 @@ public class JedisTry {
     }
 
     public void testMap() {
-        jedisCli = new Jedis("127.0.0.1", 6379);
         jedisCli.select(2);
         jedisCli.hset("family", "lbq", "65"); //同Redis命令行中的hset操作，如名为family的set不存在，则创建set并放入名为lbq的元素，值为65
         jedisCli.hset("family", "zjz", "62"); //Redis不支持int类型，如不传String则会报错。
@@ -42,8 +44,21 @@ public class JedisTry {
         System.out.println(jedisCli.hmget("testMap1", "num1","num2","num3","num4"));
     }
 
+    public void testList(){
+        jedisCli.del("mypath");
+        String ipstr = "192.168.0.1,192.168.0.104";
+        String[] ips = ipstr.split(",");
+        jedisCli.lpush("mypath",ips);
+        List<String> find = jedisCli.lrange("mypath", 0, -1);
+        if(find.contains("192.168.0.104")){
+            System.out.println("token has the 104");
+        }else {
+            System.out.println("token does not has the 104");
+        }
+    }
+
     public static void main(String[] args) {
         JedisTry jd = new JedisTry();
-        jd.testClient();
+        jd.testList();
     }
 }
