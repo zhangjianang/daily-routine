@@ -13,7 +13,12 @@
     </properties>
 
     <dependencies>
-
+        <!--sql parser-->
+        <dependency>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>1.1</version>
+        </dependency>
         <!--mq-->
         <dependency>
             <groupId>org.apache.activemq</groupId>
