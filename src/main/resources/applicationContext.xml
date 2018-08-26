@@ -43,5 +43,8 @@
     <bean id="articlesDAOImpl" class="com.jedis.ArticlesDAOImpl">
         <property name="myjid" ref="ijedis"/>
     </bean>
+    <bean class="hbase.DeleteTest" id="deleteTest">
+        <constructor-arg ref="helloRMIServiceImpl"/>
+    </bean>
 
 </beans>
