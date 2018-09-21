@@ -1,4 +1,4 @@
-package factory;
+package pattern.factory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,8 @@ import java.util.List;
  * Created by adimn on 2018/8/21.
  */
 public class IDCardFactory extends Factory {
+
+
     private List owners;
 
     public IDCardFactory(){
