@@ -5,6 +5,8 @@ package pattern.decorator;
  */
 public class FullBorder extends Border {
 
+    private static final  Character SIDE_CHR = '+';
+
     public FullBorder(Display d) {
         super(d);
     }
@@ -20,15 +22,20 @@ public class FullBorder extends Border {
     protected String getRowText(int lnum) {
 
         if(lnum ==0 || lnum == getRows()-1){
-            StringBuilder sb = new StringBuilder("/");
-            for(int i=0;i<display.getColumns();i++){
-                sb.append('-');
-            }
-            sb.append('/');
-            return sb.toString();
-        }else {
-            return '/' +display.getRowText(lnum)+'/';
+            return genHead(display.getColumns());
+        }else  {
+//            为什么减一，采用 的是递归调用， 调取包装类 下一层数据。 ！！！！
+            return SIDE_CHR +display.getRowText(lnum-1)+SIDE_CHR;
         }
+    }
+
+    private  String genHead(int n){
+        StringBuilder sb = new StringBuilder(SIDE_CHR + "");
+        for(int i=0; i <n ; i++){
+            sb.append('-');
+        }
+        sb.append(SIDE_CHR);
+        return sb.toString();
     }
 
     public static void main(String[] args) {
@@ -44,5 +51,18 @@ public class FullBorder extends Border {
 
         Display d5 = new FullBorder(d4);
         d5.show();
+
+        System.out.println();
+
+        Display d6 = new FullBorder(d5);
+        d6.show();
+
+        Display d7  =  new UpdownBorder(d6,'#');
+        d7.show();
+
+        System.out.println();
+
+        Display d8 = new FullBorder(d7);
+        d8.show();
     }
 }
