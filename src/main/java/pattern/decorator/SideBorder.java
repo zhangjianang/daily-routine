@@ -1,14 +1,35 @@
 package pattern.decorator;
 
+
+import org.springframework.stereotype.Component;
+
 /**
  * Created by adimn on 2018/10/15.
  */
+
+@Component
 public class SideBorder extends Border {
+
+    private Display display;
 
     private Character ch;
 
-    public SideBorder(Display d,Character ch) {
-        super(d);
+    public SideBorder() {
+    }
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
+
+    public Character getCh() {
+        return ch;
+    }
+
+    public void setChar(Character ch) {
         this.ch = ch;
     }
 

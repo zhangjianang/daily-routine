@@ -9,7 +9,7 @@
 
     <!-- bean annotation driven -->
     <context:annotation-config />
-    <context:component-scan base-package="beans" ></context:component-scan>
+    <context:component-scan base-package="pattern" ></context:component-scan>
 
     <!--<bean name="urseRmiService" class="com.lm.core.service.impl.UserRmiServiceImpl"/>-->
     <!--<bean name="rmiTest" class="org.springframework.remoting.rmi.RmiServiceExporter">-->
@@ -20,20 +20,20 @@
     <!--</bean>-->
 
     <!--服务端-->
-    <bean id="helloRMIServiceImpl" class="springrmi.client.HelloRMIServiceImpl"> </bean>
-    <!-- 将一个类发布为一个RMI服务 -->
-    <bean id="myRMIServer"  class="org.springframework.remoting.rmi.RmiServiceExporter">
-        <property name="serviceName" value="helloRMI"></property>
-        <property name="service" ref="helloRMIServiceImpl"></property>
-        <property name="serviceInterface" value="springrmi.client.HelloRMIService"></property>
-        <property name="registryPort" value="9999"></property>
-    </bean>
+    <!--<bean id="helloRMIServiceImpl" class="springrmi.client.HelloRMIServiceImpl"> </bean>-->
+    <!--&lt;!&ndash; 将一个类发布为一个RMI服务 &ndash;&gt;-->
+    <!--<bean id="myRMIServer"  class="org.springframework.remoting.rmi.RmiServiceExporter">-->
+        <!--<property name="serviceName" value="helloRMI"></property>-->
+        <!--<property name="service" ref="helloRMIServiceImpl"></property>-->
+        <!--<property name="serviceInterface" value="springrmi.client.HelloRMIService"></property>-->
+        <!--<property name="registryPort" value="9999"></property>-->
+    <!--</bean>-->
 
     <!-- 客户端 -->
-    <bean id="myRMIClient"  class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
-        <property name="serviceInterface" value="springrmi.client.HelloRMIService"></property>
-        <property name="serviceUrl" value="rmi://127.0.0.1:9999/helloRMI"></property>
-    </bean>
+    <!--<bean id="myRMIClient"  class="org.springframework.remoting.rmi.RmiProxyFactoryBean">-->
+        <!--<property name="serviceInterface" value="springrmi.client.HelloRMIService"></property>-->
+        <!--<property name="serviceUrl" value="rmi://127.0.0.1:9999/helloRMI"></property>-->
+    <!--</bean>-->
 
     <!-- 批量扫描@Component -->
     <context:component-scan base-package="com.jedis"/>
@@ -43,8 +43,10 @@
     <bean id="articlesDAOImpl" class="com.jedis.ArticlesDAOImpl">
         <property name="myjid" ref="ijedis"/>
     </bean>
-    <bean class="hbase.DeleteTest" id="deleteTest">
-        <constructor-arg ref="helloRMIServiceImpl"/>
-    </bean>
 
+    <!--<bean id="iocStringDisplay" class="pattern.decorator.IocStringDisplay">-->
+    <!--</bean>-->
+
+    <!--<bean id="sideBorder" class="pattern.decorator.SideBorder">-->
+    <!--</bean>-->
 </beans>

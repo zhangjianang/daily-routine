@@ -1,15 +1,35 @@
 package pattern.decorator;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by adimn on 2018/10/15.
  */
+
+@Component
 public class UpdownBorder extends Border {
 
+    private Display display;
 
     private Character udchar;
 
-    public UpdownBorder(Display d,Character udchar) {
-        super(d);
+    public UpdownBorder() {
+
+    }
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
+
+    public Character getUdchar() {
+        return udchar;
+    }
+
+    public void setChar(Character udchar) {
         this.udchar = udchar;
     }
 

@@ -1,5 +1,7 @@
 package pattern.decorator;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by adimn on 2018/10/13.
  */

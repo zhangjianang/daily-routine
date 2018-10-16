@@ -1,13 +1,24 @@
 package pattern.decorator;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by adimn on 2018/10/13.
  */
+
+@Component
 public class StringDisplay extends Display{
 
     private String str;
 
-    public StringDisplay(String str){
+    public StringDisplay(){
+    }
+
+    public String getStr() {
+        return str;
+    }
+
+    public void setStr(String str) {
         this.str = str;
     }
 

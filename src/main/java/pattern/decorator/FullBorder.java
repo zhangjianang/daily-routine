@@ -1,14 +1,34 @@
 package pattern.decorator;
 
+import jdk.nashorn.internal.objects.annotations.Constructor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+
 /**
  * Created by adimn on 2018/10/15.
  */
+@Component
 public class FullBorder extends Border {
+
+    private Display display;
 
     private static final  Character SIDE_CHR = '+';
 
-    public FullBorder(Display d) {
-        super(d);
+    public FullBorder() {
+    }
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void setDisplay(Display display) {
+        this.display = display;
+    }
+
+    @Override
+    public void setChar(Character ch) {
+
     }
 
     protected Integer getColumns() {
@@ -39,30 +59,39 @@ public class FullBorder extends Border {
     }
 
     public static void main(String[] args) {
-        Display d1 = new StringDisplay("we are");
-        Display d2 = new SideBorder(d1,'*');
-        d1.show();
-        d2.show();
+        ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 
-        Display d3 = new FullBorder(d2);
+        StringDisplay d1 = ac.getBean(StringDisplay.class);
+        d1.setStr("we are");
+
+//        Border d2 = ac.getBean(SideBorder.class);
+//        d2.setDisplay(d1);
+//        d2.setChar('*');
+//        d2.show();
+
+        Border d3 = ac.getBean(FullBorder.class);
+        d3.setDisplay(d1);
         d3.show();
-        Display d4 = new SideBorder(d3,'!');
+
+        Border d4 = ac.getBean(SideBorder.class);
+        d4.setDisplay(d3);
+        d4.setChar('!');
         d4.show();
 
-        Display d5 = new FullBorder(d4);
-        d5.show();
-
-        System.out.println();
-
-        Display d6 = new FullBorder(d5);
-        d6.show();
-
-        Display d7  =  new UpdownBorder(d6,'#');
-        d7.show();
-
-        System.out.println();
-
-        Display d8 = new FullBorder(d7);
-        d8.show();
+//        Display d5 = new FullBorder(d4);
+//        d5.show();
+//
+//        System.out.println();
+//
+//        Display d6 = new FullBorder(d5);
+//        d6.show();
+//
+//        Display d7  =  new UpdownBorder(d6,'#');
+//        d7.show();
+//
+//        System.out.println();
+//
+//        Display d8 = new FullBorder(d7);
+//        d8.show();
     }
 }
