@@ -2,6 +2,7 @@ package pattern.decorator;
 
 import jdk.nashorn.internal.objects.annotations.Constructor;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Component;
  * Created by adimn on 2018/10/15.
  */
 @Component
+@Scope("prototype")
 public class FullBorder extends Border {
 
     private Display display;
@@ -64,13 +66,13 @@ public class FullBorder extends Border {
         StringDisplay d1 = ac.getBean(StringDisplay.class);
         d1.setStr("we are");
 
-//        Border d2 = ac.getBean(SideBorder.class);
-//        d2.setDisplay(d1);
-//        d2.setChar('*');
-//        d2.show();
+        Border d2 = ac.getBean(SideBorder.class);
+        d2.setDisplay(d1);
+        d2.setChar('*');
+        d2.show();
 
         Border d3 = ac.getBean(FullBorder.class);
-        d3.setDisplay(d1);
+        d3.setDisplay(d2);
         d3.show();
 
         Border d4 = ac.getBean(SideBorder.class);
@@ -78,20 +80,24 @@ public class FullBorder extends Border {
         d4.setChar('!');
         d4.show();
 
-//        Display d5 = new FullBorder(d4);
-//        d5.show();
+        Border d5 = ac.getBean(FullBorder.class);
+        d5.setDisplay(d4);
+        d5.show();
 //
 //        System.out.println();
 //
 //        Display d6 = new FullBorder(d5);
 //        d6.show();
 //
-//        Display d7  =  new UpdownBorder(d6,'#');
-//        d7.show();
-//
-//        System.out.println();
-//
-//        Display d8 = new FullBorder(d7);
-//        d8.show();
+        Border d7  =  ac.getBean(UpdownBorder.class);
+        d7.setDisplay(d5);
+        d7.setChar('#');
+        d7.show();
+
+        System.out.println();
+
+        Border d8 = ac.getBean( FullBorder.class);
+        d8.setDisplay(d7);
+        d8.show();
     }
 }

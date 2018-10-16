@@ -1,6 +1,7 @@
 package pattern.decorator;
 
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
+@Scope("prototype")
+
 public class SideBorder extends Border {
 
     private Display display;
