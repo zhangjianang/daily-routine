@@ -20,10 +20,11 @@ public class TestLambda {
         }
 //        filter(heros);
         anonymousClassFilter(heros);
-        
-//        lambda 表达式就是实现接口。单数去掉输入参数 类型，和返回参数类型，因为在接口中已经制定输入参数类型，和返回参数类型了。
 
-        lambdaFilter(heros, h-> h.hp > 100 && h.damage< 50);
+//        lambda 表达式就是实现接口。单数去掉输入参数 类型，和返回参数类型，因为在接口中已经制定输入参数类型，和返回参数类型了。
+//       括号在只有一个参数时候，也可以省略不用。
+//        lambdaFilter(heros, (h )-> h.hp > 100 && h.damage< 50);
+        lambdaFilter(heros,TestLambda::staticHero );
     }
 
     public static void filter(List<Hero> heros){
@@ -61,5 +62,9 @@ public class TestLambda {
         }
     }
 
+//    lambda 表达式引用静态函数。
+    public static Boolean staticHero(Hero h){
+        return h.hp>100 && h.damage<50;
+    }
 
 }
