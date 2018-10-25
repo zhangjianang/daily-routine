@@ -2,6 +2,7 @@ package pattern.builder;
 
 import beans.User;
 
+
 /**
  * Created by adimn on 2018/8/2.
  */
@@ -44,4 +45,5 @@ public class Student {
     public static void main(String[] args) {
         Student st = new Student.StudentBuilder().setName("ang").setAge(10).setGender("male").build();
     }
+
 }
