@@ -42,13 +42,13 @@ public class Hero implements Comparable<Hero>{
     }
 
     public void attackHero(Hero h) {
-        try {
-            //为了表示攻击需要时间，每次攻击暂停1000毫秒
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        try {
+//            //为了表示攻击需要时间，每次攻击暂停1000毫秒
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
         h.hp-=damage;
         System.out.format("%s 正在攻击 %s, %s的血变成了 %.0f%n",name,h.name,h.name,h.hp);
 
@@ -62,5 +62,21 @@ public class Hero implements Comparable<Hero>{
 
     public static Boolean testHero(Hero hero){
         return  hero.hp>100 && hero.damage <50 ;
+    }
+
+
+    public void bodong(){
+        int num =3;
+        while(num-- >0){
+            System.out.println(this.name +" 发波 "+ num);
+        }
+        try {
+            System.out.println(this.name +" 正在充能！");
+            Thread.sleep(5000);
+            num = 3;
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
