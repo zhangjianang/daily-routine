@@ -36,19 +36,33 @@ public class Hero implements Comparable<Hero>{
             return -1;
     }
 
+    //回血
+    public void recover(){
+        synchronized (this) {
+            hp = hp + 1;
+        }
+    }
+
+    //掉血
+    public void hurt(){
+        synchronized (this) {
+            hp = hp - 1;
+        }
+    }
+
     @Override
     public String toString() {
         return "Hero [name=" + name + ", hp=" + hp + ", damage=" + damage + "]\r\n";
     }
 
     public void attackHero(Hero h) {
-//        try {
-//            //为了表示攻击需要时间，每次攻击暂停1000毫秒
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
+        try {
+            //为了表示攻击需要时间，每次攻击暂停1000毫秒
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         h.hp-=damage;
         System.out.format("%s 正在攻击 %s, %s的血变成了 %.0f%n",name,h.name,h.name,h.hp);
 
