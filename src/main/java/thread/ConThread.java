@@ -2,10 +2,18 @@ package thread;
 
 import lambda.Hero;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by adimn on 2018/11/1.
  */
 public class ConThread {
+    /**
+     *  通过观看多线程中处理 hero血量的方式，展示多线程带来的同步问题
+     * @param args
+     */
     public static void main(String[] args) {
         final Hero gareen = new Hero();
         gareen.name = "盖伦";
@@ -65,6 +73,9 @@ public class ConThread {
         //但是事实上观察到的是：
 
         System.out.printf("%d个增加线程和%d个减少线程结束后%n盖伦的血量变成了 %.0f%n", num,num,gareen.hp);
+
+        HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
+        Map<Object, Object> objectObjectMap = Collections.synchronizedMap(objectObjectHashMap);
     }
 
 }
