@@ -9,60 +9,72 @@ import java.util.List;
  */
 public class MyThreadPool {
 
-    private LinkedList<Runnable> pools ;
+    LinkedList<Thread> pools ;
 
     public MyThreadPool(){
         pools =  new LinkedList();
-    }
-
-    public synchronized void add(Runnable r1){
-        if(pools.size() == 5){
-            try {
-                this.wait();
-                System.out.println("增加wait");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }else {
-            pools.add(r1);
-            System.out.println("增加 notify");
+        for(int i = 0;i<20;i++){
+            new ExecuteClass(i+"").start();
         }
     }
 
-    public synchronized void execute(){
-        if(pools.size() ==0 ){
-            try {
-                this.wait();
-                System.out.println("执行wait");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }else {
-            for( int i=0;i<pools.size();i++){
-                System.out.println("thread-"+i +" 开始执行");
-                new Thread(pools.get(i)).start();
-                System.out.println("thread-"+i +" 执行完成");
-                pools.remove(i);
-                this.notifyAll();
-                System.out.println("执行 notify");
+    public  void add(Thread r1){
+        synchronized(pools) {
+            if (pools.size() == 10) {
+                try {
+                    wait();
+                    System.out.println("增加wait");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                pools.add(r1);
+                pools.notifyAll();
+                System.out.println("增加 notify");
             }
         }
     }
+
+
 
     public static void main(String[] args) {
         MyThreadPool pool = new MyThreadPool();
-        for(int i=0 ;i<10 ;i++){
-            pool.add(()->{
-                System.out.println("新建-"+ Thread.currentThread().getName()+"-线程");
+
+        for(int i =0;i<5;i++){
+            pool.add(new Thread(){
+                public void run(){
+                    System.out.println("新进程"+Thread.currentThread().getName()+ " 得到执行");
+                }
             });
         }
-        new Thread(){
-            public void run(){
-                while (true) {
-                    pool.execute();
-                }
-            }
-        }.start();
 
     }
+
+    class ExecuteClass extends Thread{
+        public ExecuteClass(String name){
+            super(name);
+        }
+        private Thread pool;
+
+        public void run(){
+            while (true){
+                System.out.println(getName()+"启动进程！");
+                synchronized (pools){
+                    while(pools.isEmpty()){
+                        try {
+                            pools.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    pool = pools.removeLast();
+                }
+                pool.start();
+                System.out.println(getName()+"获取到任务，并执行！");
+            }
+        }
+    }
+
 }
+
+
