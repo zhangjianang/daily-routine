@@ -11,7 +11,6 @@ public class SafeLock implements  Runnable{
     private Lock lock = new ReentrantLock();
     public void run() {
         lock.lock();
-
             while(sum > 0){
                 try {
                     Thread.sleep(3);
