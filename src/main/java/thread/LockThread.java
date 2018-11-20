@@ -11,12 +11,12 @@ public class LockThread {
     }
 
     public static void main(String[] args) {
-
+        Object someObject = new Object();
         Thread t1 =  new Thread(){
           public void run(){
               System.out.println(getName()+"启动");
               System.out.println(getName()+"视图占有资源");
-              synchronized (this){
+              synchronized (someObject){
                   System.out.println(getName()+"占有资源");
                   try {
                       Thread.sleep(5000);
@@ -33,7 +33,7 @@ public class LockThread {
 
         Thread t2 =  new Thread(){
             public void run(){
-                synchronized (this){
+                synchronized (someObject){
                     System.out.println(getName()+"获取资源");
                     try {
                         Thread.sleep(5000);
