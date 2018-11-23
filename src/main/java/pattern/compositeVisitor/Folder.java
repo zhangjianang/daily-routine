@@ -1,4 +1,4 @@
-package pattern.composite;
+package pattern.compositeVisitor;
 
 import java.util.ArrayList;
 import java.util.Iterator;

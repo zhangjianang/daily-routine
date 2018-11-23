@@ -1,4 +1,4 @@
-package pattern.composite;
+package pattern.compositeVisitor;
 
 /**
  * Created by adimn on 2018/11/23.
@@ -21,7 +21,7 @@ public class ListVisitor extends Visitor {
 
     public static void main(String[] args) {
         String curRelation = "M3/(sum(day_diff(s1-s2))+avg(s2  + s3 ))";
-        String[] split = curRelation.split("[-+*/()]");
+        String[] split = curRelation.split("\\-|\\+|\\*|\\/|\\(|\\)");
         for(int i=0;i<split.length;i++){
             System.out.println(i+" is : "+split[i]);
         }

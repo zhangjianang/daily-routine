@@ -1,7 +1,4 @@
-package pattern.composite;
-
-import java.util.ArrayList;
-import java.util.List;
+package pattern.compositeVisitor;
 
 /**
  * Created by adimn on 2018/8/7.

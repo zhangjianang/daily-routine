@@ -1,4 +1,4 @@
-package pattern.composite;
+package pattern.compositeVisitor;
 
 /**
  * Created by adimn on 2018/11/23.
