@@ -3,7 +3,7 @@ package pattern.composite;
 /**
  * Created by adimn on 2018/8/7.
  */
-public abstract class Entry {
+public abstract class Entry implements Element{
     private String name;
     private Integer size;
     public Entry(String name,Integer size){

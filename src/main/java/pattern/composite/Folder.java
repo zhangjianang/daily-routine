@@ -10,6 +10,14 @@ import java.util.List;
 public class Folder extends Entry {
     private List flist;
 
+    public List getFlist() {
+        return flist;
+    }
+
+    public void setFlist(List flist) {
+        this.flist = flist;
+    }
+
     public Folder(String name, Integer size) {
         super(name, size);
         flist = new ArrayList();
@@ -46,7 +54,14 @@ public class Folder extends Entry {
         usrFolder.add(viFile);
         usrFolder.add(profileFile);
 
-        rootFolder.getList();
+//        rootFolder.getList();
 
+        ListVisitor lv = new ListVisitor();
+        rootFolder.accept(lv);
+    }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

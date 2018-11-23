@@ -21,4 +21,9 @@ public class File extends Entry {
     public void toSring(){
         System.out.println("name is: "+getName()+"; size is: "+getSize());
     }
+
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
+    }
 }
