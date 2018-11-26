@@ -5,17 +5,25 @@ package pattern.compositeVisitor;
  */
 public class File extends Entry {
     private Integer size;
+    private String name;
 
     public File(String name,Integer size){
-        super(name,size);
+        this.name = name;
+        this.size = size;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public Integer getSize() {
+        return this.size;
     }
 
     @Override
     public void getList() {
-        System.out.println("name is: "+getName()+"; size is: "+getSize());
-    }
-
-    public void toSring(){
         System.out.println("name is: "+getName()+"; size is: "+getSize());
     }
 

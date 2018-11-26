@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Folder extends Entry {
     private List flist;
+    private String name;
 
     public List getFlist() {
         return flist;
@@ -18,15 +19,27 @@ public class Folder extends Entry {
         this.flist = flist;
     }
 
-    public Folder(String name, Integer size) {
-        super(name, size);
+    public Folder(String name) {
+        this.name = name;
         flist = new ArrayList();
     }
 
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public Integer getSize() {
+        Integer size = 0;
+        for(Object per:flist){
+            size += ((Entry)per).getSize();
+        }
+        return size;
+    }
+
     public Entry add(Entry data) throws Exception {
-        Integer cur = getSize();
-        cur += data.getSize();
-        setSize(cur);
         flist.add(data);
         return this;
     }
@@ -43,9 +56,9 @@ public class Folder extends Entry {
 
 
     public static void main(String[] args) throws Exception {
-        Entry rootFolder = new Folder("rootFolder",1);
-        Entry usrFolder = new Folder("usrFolder",1);
-        Entry varFolder = new Folder("varFolder",1);
+        Entry rootFolder = new Folder("rootFolder");
+        Entry usrFolder = new Folder("usrFolder");
+        Entry varFolder = new Folder("varFolder");
         Entry viFile = new File("vi",10);
         Entry profileFile = new File("profile",10);
 
@@ -58,9 +71,12 @@ public class Folder extends Entry {
 
         ListVisitor lv = new ListVisitor();
         rootFolder.accept(lv);
+
+        SizeVisitor sv  = new SizeVisitor();
+        rootFolder.accept(sv);
     }
 
-    @Override
+
     public void accept(Visitor v) {
         v.visit(this);
     }
