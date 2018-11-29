@@ -32,11 +32,9 @@ public class Folder extends Entry {
 
     @Override
     public Integer getSize() {
-        Integer size = 0;
-        for(Object per:flist){
-            size += ((Entry)per).getSize();
-        }
-        return size;
+        SizeVisitor sz = new SizeVisitor();
+        accept(sz);
+        return sz.getSize();
     }
 
     public Entry add(Entry data) throws Exception {

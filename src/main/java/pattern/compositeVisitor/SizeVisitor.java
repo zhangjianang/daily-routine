@@ -6,12 +6,17 @@ package pattern.compositeVisitor;
 public class SizeVisitor extends Visitor {
     private  int size;
     public SizeVisitor(){
-
+        this.size = 0;
     }
+
+    public Integer getSize(){
+        return size;
+    }
+
     @Override
     public void visit(File f) {
         this.size += f.getSize();
-        System.out.println(f.getName()+" size is "+this.size);
+//        System.out.println(f.getName()+" size is "+this.size);
     }
 
     @Override
@@ -19,7 +24,7 @@ public class SizeVisitor extends Visitor {
         for(Object per:f.getFlist()){
             ((Entry)per).accept(this);
         }
-        System.out.println(f.getName()+" size is "+this.size);
+//        System.out.println(f.getName()+" size is "+this.size);
     }
 
 
