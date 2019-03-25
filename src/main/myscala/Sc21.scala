@@ -11,12 +11,12 @@ object MyRun{
   }
 }
 
-class HelloActor extends Actor {
-  def act() {
-    while (true) {
-      receive {
-        case name: String => println("Hello, " + name)
-      }
-    }
-  }
-}
+//class HelloActor extends Actor {
+//  def act() {
+//    while (true) {
+//      receive {
+//        case name: String => println("Hello, " + name)
+//      }
+//    }
+//  }
+//}
