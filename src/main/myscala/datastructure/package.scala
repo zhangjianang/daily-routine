@@ -56,3 +56,7 @@ object TestList {
     res
   }
 }
+
+class ConstructureTry(name:String,var age:Int=10){
+
+}
